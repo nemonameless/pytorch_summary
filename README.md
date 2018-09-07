@@ -72,3 +72,7 @@ total memory: 109.69MB
 total MAdd: 8,219,737,624
 
 ```
+## validation mode
+ To make sure my code is correct, I add a validation mothod from https://github.com/sksq96/pytorch-summary
+ To use this method, please install  *torchsummary*
+ `pip3 install torchsummary`
