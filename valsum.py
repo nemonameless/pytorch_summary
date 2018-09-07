@@ -2,7 +2,6 @@
 import torch
 from torchvision import models
 from torchsummary import summary
-from resnext import resnexts50
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = models.vgg16().to(device)
 
