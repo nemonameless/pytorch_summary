@@ -12,7 +12,7 @@ Calculate parameters quantity, memory, and flops in simple and complex way.
 
 ## complexsum mode:
 
-I followed  https://github.com/ceykmc/pytorch_model_summary , and add the support to  bilinear layer.
+following  https://github.com/ceykmc/pytorch_model_summary , and add the support to  bilinear layer.
 
 ```
                  module name   input shape  output shape  parameter quantity inference memory(MB)         MAdd duration percent
@@ -73,6 +73,6 @@ total MAdd: 8,219,737,624
 
 ```
 ## validation mode
- To make sure my code is correct, I add a validation mothod from https://github.com/sksq96/pytorch-summary
- To use this method, please install  *torchsummary*
+ To make sure the result is correct, a validation mothod from https://github.com/sksq96/pytorch-summary is added.
+ To use this validation method, please install  *torchsummary*
  `pip3 install torchsummary`
