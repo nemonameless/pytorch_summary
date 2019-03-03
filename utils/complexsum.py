@@ -32,15 +32,7 @@ class CCustomNet(nn.Module):
         return x
 
 
-import torchvision.models as models
-def main():
-
-    model = models.resnet50()
-
-    input_size = (3, 224, 224)
-
-    model_summary(model, input_size, query_granularity=2)
+def complexsum(model,input_size, device = 'cpu'):
+    model_summary(model, input_size, query_granularity=2, device = device)
 
 
-if __name__ == "__main__":
-    main()

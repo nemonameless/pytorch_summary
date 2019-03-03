@@ -107,11 +107,11 @@ def pretty_format(collected_nodes):
     return summary
 
 
-def model_summary(model, input_size, query_granularity=1):
+def model_summary(model, input_size, query_granularity=1,  device = 'cpu'):
     assert isinstance(model, nn.Module)
     assert isinstance(input_size, (list, tuple)) and len(input_size) == 3
 
-    model_hook = CModelHook(model, input_size)
+    model_hook = CModelHook(model, input_size, device)
     leaf_modules = model_hook.retrieve_leaf_modules()
     summary_tree = convert_leaf_modules_to_summary_tree(leaf_modules)
     collected_nodes = summary_tree.get_collected_summary_nodes(query_granularity)

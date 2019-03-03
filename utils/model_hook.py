@@ -11,7 +11,7 @@ from utils.module_madd import compute_module_madd
 
 
 class CModelHook(object):
-    def __init__(self, model, input_size):
+    def __init__(self, model, input_size, device):
         assert isinstance(model, nn.Module)
         assert isinstance(input_size, (list, tuple))
 
@@ -20,7 +20,10 @@ class CModelHook(object):
         self._origin_call = dict()  # sub module call hook
 
         self._hook_model()
-        x = Variable(torch.rand(1, *self._input_size))  # add module duration time
+        if device == "gpu" and torch.cuda.is_available():
+            x = Variable(torch.rand(1, *self._input_size)).cuda()
+        else:
+            x = Variable(torch.rand(1, *self._input_size)) # add module duration time
         self._model.eval()
         self._model(x)
 

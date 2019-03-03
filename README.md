@@ -1,16 +1,39 @@
 # PyTorch_summary
-Pytorch summary:
+PyTorch summary:
 
 Calculate parameters quantity, memory, and flops in simple and complex way.
 
-## simplesum mode:
+# NEW
+
+- Support both GPU and CPU for **simple mode** and **complex mode**
+- PyTorch 1.0 and 0.4 supported.
+
+## Useage:
+Add your model to summary.py 
+```
+###### add your model ######
+from torchvision import models
+model = models.resnet50() 
+############################
+```
+Run summary.py
+```
+python3 summary.py  --mod simple --gpu -1 --size 3,224,224
+--mod simple|complex|val 
+--gpu (gpu id, -1:use cpu)
+--size (input size, split with ,)
+```
+
+## Results:
+
+### simplesum mode:
 
 ```
   + Number of params: 25.56M
   + Number of FLOPs: 4.11G
 ```
 
-## complexsum mode:
+### complexsum mode:
 
 following  https://github.com/ceykmc/pytorch_model_summary , and add the support to  bilinear layer.
 
@@ -72,7 +95,7 @@ total memory: 109.69MB
 total MAdd: 8,219,737,624
 
 ```
-## validation mode
+### validation mode
  To make sure the result is correct, a validation mothod from https://github.com/sksq96/pytorch-summary is added.
  To use this validation method, please install  *torchsummary*
  `pip3 install torchsummary`
