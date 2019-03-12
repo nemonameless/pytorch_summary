@@ -1,10 +1,11 @@
 # PyTorch_summary
 PyTorch summary:
 
-Calculate parameters quantity, memory, and flops in simple and complex way.
+Calculate parameters quantity, memory,  run-time, and flops in simple and complex way.
 
 # NEW
 
+- Support run-time test.
 - Support both GPU and CPU for **simple mode** and **complex mode**
 - PyTorch 1.0 and 0.4 supported.
 
@@ -22,6 +23,7 @@ python3 summary.py  --mod simple --gpu -1 --size 3,224,224
 --mod simple|complex|val 
 --gpu (gpu id, -1:use cpu)
 --size (input size, split with ,)
+--runtime (if runtime is -1: disable runtime>=1 iters for runtime test.)
 ```
 
 ## Results:
@@ -31,6 +33,11 @@ python3 summary.py  --mod simple --gpu -1 --size 3,224,224
 ```
   + Number of params: 25.56M
   + Number of FLOPs: 4.11G
+```
+### run-time test:
+```
+Testing runtime using TITAN X (Pascal)
+Run-Time: 141.8995 ms
 ```
 
 ### complexsum mode:
