@@ -41,6 +41,7 @@ inputsize = [int(x) for x in inputsize]
 print("Input size: ", inputsize)
 if args.mod =='simple':
     print("Using SIMPLE summary mode:")
+    model.eval()
     simplesum(model, inputsize, device_mode)
 elif args.mod =='complex':
     print("Using COMPLEX summary mode:")
