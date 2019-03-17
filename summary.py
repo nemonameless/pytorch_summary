@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser(description='PyTorch Summary')
 
 parser.add_argument('--mod', default='simple', type=str, 
                     help='simple complex val')
-parser.add_argument('--gpu', default='-1',type=str,
+parser.add_argument('--gpu', default='-1',type=int,
                     help='GPU: ID or CPU: -1')
 parser.add_argument('--size', default="3,224,224", type=str, 
                     help='Size of input image (C,H,W)')
@@ -22,12 +22,12 @@ args = parser.parse_args()
 from torchvision import models
 model = models.resnet50()
 ############################
-if int(args.gpu) >=0:
+if args.gpu >=0:
   if torch.cuda.is_available():
-    os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-    os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
+    # os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+    # os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
     print("Using GPU: ",args.gpu)
-    device = torch.device('cuda')
+    device = torch.device('cuda', args.gpu)
     device_mode = 'gpu'
   else:
     print("CUDA is not available.")
@@ -45,15 +45,15 @@ print("Input size: ", inputsize)
 if args.mod =='simple':
     print("Using SIMPLE summary mode:")
     model.eval()
-    simplesum(model, inputsize, device_mode)
+    simplesum(model, inputsize, device = args.gpu)
 elif args.mod =='complex':
     print("Using COMPLEX summary mode:")
-    complexsum(model, inputsize, device_mode)
+    complexsum(model, inputsize, device = args.gpu)
 elif args.mod =='val':
     print("Using VALIDATION summary mode: (Only support GPU mode.)")
-    valsum(model, inputsize, device_mode)
+    valsum(model, inputsize, device = args.gpu)
 else:
     print("Only support simple|complex|val modes.")
 
 if args.runtime>0:
-    runtime(model, inputsize, iter = args.runtime, device = device_mode)
+    runtime(model, inputsize, iter = args.runtime, device = args.gpu)

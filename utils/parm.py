@@ -14,7 +14,7 @@ def print_model_parm_nums(model):
     print('  + Number of params: %.2fM' % (total / 1e6))
 
 
-def print_model_parm_flops(model,inputsize,device='gpu'):
+def print_model_parm_flops(model,inputsize,device=-1):
 
     # prods = {}
     # def save_prods(self, input, output):
@@ -128,8 +128,8 @@ def print_model_parm_flops(model,inputsize,device='gpu'):
 
     #resnet = models.alexnet()
     foo(model)
-    if device == "gpu" and torch.cuda.is_available():
-        input = Variable(torch.rand(inputsize).unsqueeze(0), requires_grad = True).cuda()
+    if device>=0 and torch.cuda.is_available():
+        input = Variable(torch.rand(inputsize).unsqueeze(0), requires_grad = True).cuda(device)
     else:
         input = Variable(torch.rand(inputsize).unsqueeze(0), requires_grad = True)
     

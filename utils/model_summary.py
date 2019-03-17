@@ -107,7 +107,7 @@ def pretty_format(collected_nodes):
     return summary
 
 
-def model_summary(model, input_size, query_granularity=1,  device = 'cpu'):
+def model_summary(model, input_size, query_granularity=1,  device = -1):
     assert isinstance(model, nn.Module)
     assert isinstance(input_size, (list, tuple)) and len(input_size) == 3
 

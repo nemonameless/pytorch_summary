@@ -20,8 +20,8 @@ class CModelHook(object):
         self._origin_call = dict()  # sub module call hook
 
         self._hook_model()
-        if device == "gpu" and torch.cuda.is_available():
-            x = Variable(torch.rand(1, *self._input_size)).cuda()
+        if device>=0 and torch.cuda.is_available():
+            x = Variable(torch.rand(1, *self._input_size)).cuda(device)
         else:
             x = Variable(torch.rand(1, *self._input_size)) # add module duration time
         self._model.eval()

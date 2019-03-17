@@ -32,7 +32,7 @@ class CCustomNet(nn.Module):
         return x
 
 
-def complexsum(model,input_size, device = 'cpu'):
+def complexsum(model,input_size, device = -1):
     model_summary(model, input_size, query_granularity=2, device = device)
 
 

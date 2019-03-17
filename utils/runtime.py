@@ -2,13 +2,15 @@
 import time
 import torch
 from torch.autograd import Variable
-def runtime(model, inputsize=(3,224,224), iter = 10, device='cpu'):
+def runtime(model, inputsize=(3,224,224), iter = 10, device=-1):
     model.eval()
-    print("Testing runtime using", torch.cuda.get_device_name(0))
-    if device == "gpu" and torch.cuda.is_available():
-        input = Variable(torch.rand(inputsize).unsqueeze(0), requires_grad = True).cuda()
+    
+    if device>=0 and torch.cuda.is_available():
+        input = Variable(torch.rand(inputsize).unsqueeze(0), requires_grad = True).cuda(device)
+        print("Testing runtime using", torch.cuda.get_device_name(device))
     else:
         input = Variable(torch.rand(inputsize).unsqueeze(0), requires_grad = True)
+        print("Testing runtime using cpu")
     sum_time = 0
     for i in range(iter):
         torch.cuda.synchronize()
