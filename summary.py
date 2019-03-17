@@ -56,4 +56,4 @@ else:
     print("Only support simple|complex|val modes.")
 
 if args.runtime>0:
-    runtime(model, inputsize, iter = args.runtime, device='cpu')
+    runtime(model, inputsize, iter = args.runtime, device = device_mode)
