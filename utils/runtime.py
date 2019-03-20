@@ -13,7 +13,6 @@ def runtime(model, inputsize=(3,224,224), iter = 10, device=-1):
         print("Testing runtime using cpu")
     sum_time = 0
     for i in range(iter):
-        torch.cuda.synchronize()
         start_time = time.time()
         out = model(input)
         torch.cuda.synchronize()
